@@ -12,7 +12,7 @@ export interface IUserModel extends Model<IUser> { }
 export class UserModel {
     private _model: IUserModel;
     private _schema: Schema;
-    private readonly collectionName = 'usuarios';
+    private readonly collectionName = 'users';
 
     constructor(private databaseService: DatabaseService) {
         this.generateSchema();

@@ -7,7 +7,7 @@ export class UserService {
     constructor(private userModel: UserModel) { }
 
     public async getAll() {
-        const users = (await this.repository).findOne();
+        const users = (await this.repository).find();
         return users;
     }
 
