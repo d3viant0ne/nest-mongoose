@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 export const SETTINGS = {
     PORT: Number(process.env.PORT) || 3000,
     SECRET: process.env.SECRET || 'mysecret',

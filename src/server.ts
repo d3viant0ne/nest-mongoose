@@ -11,7 +11,6 @@ instance.use(cors());
 
 const app = NestFactory.create(ApplicationModule, instance);
 app.then(
-    instance => instance.listen(
-        Number(SETTINGS.PORT), () => console.log('Application is listening on port 3000')
+    instance => instance.listen(SETTINGS.PORT, () => console.log(`Application is listening on port ${SETTINGS.PORT}`)
     )
 );
