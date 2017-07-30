@@ -7,14 +7,17 @@ export class DatabaseService {
     private _connection: mongoose.Connection;
 
     constructor() {
-        (mongoose as any).Promise = global.Promise;
+        (<any>mongoose).Promise = global.Promise;
     }
 
     get connection() {
         if (this._connection) {
             return this._connection;
         } else {
-            this._connection = mongoose.createConnection(this.getUrl());
+            this._connection = mongoose.createConnection(this.getUrl(), {
+                  useMongoClient: true
+            });
+            console.log("MongoDB is Ready!")
             return this._connection;
         }
     }
