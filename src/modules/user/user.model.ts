@@ -4,6 +4,10 @@ import { DatabaseService } from './../shared/database.service';
 
 export interface IUser extends Document {
     name: string;
+    lastName: string;
+    email: number;
+    password: string;
+    phone: string;
 }
 
 export interface IUserModel extends Model<IUser> { }
@@ -32,7 +36,11 @@ export class UserModel {
 
     private generateSchema() {
         this._schema = new Schema({
-            name: { type: String, required: 'Field {PATH} is required' }
+            name: { type: String, required: 'Field {PATH} is required' },
+            lastName: { type: String, required: 'Field {PATH} is required' },
+            email: { type: String, required: 'Field {PATH} is required' },
+            password: { type: String, required: 'Field {PATH} is required' },
+            phone: { type: String }
         });
     }
 

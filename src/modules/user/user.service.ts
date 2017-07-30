@@ -1,19 +1,29 @@
 import { Component } from '@nestjs/common';
 import { DatabaseService } from './../shared/database.service';
-import { UserModel } from './user.model';
+import { IUser, UserModel } from './user.model';
 
 @Component()
 export class UserService {
     constructor(private userModel: UserModel) { }
 
     public async getAll() {
-        const users = (await this.repository).find();
-        return users;
+         return (await this.repository).find();
     }
 
-    public async getById(id: string) {
-        const user = (await this.repository).findById(id);
-        return user;
+    public async getById(id: string): Promise<IUser> {
+        return (await this.repository).findById(id);
+    }
+
+    public async create(user: IUser): Promise<IUser> {
+        return (await this.repository).create(user);
+    }
+
+    public async update(id: string, user: IUser) {
+        return (await this.repository).findByIdAndUpdate( id, user)
+    }
+
+    public async delete(id: string) {
+        return (await this.repository).findByIdAndRemove(id)
     }
 
     private get repository() {
