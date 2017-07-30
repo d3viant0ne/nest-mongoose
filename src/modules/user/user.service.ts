@@ -1,5 +1,4 @@
 import { Component } from '@nestjs/common';
-import { DatabaseService } from './../shared/database.service';
 import { IUser, UserModel } from './user.model';
 
 @Component()
