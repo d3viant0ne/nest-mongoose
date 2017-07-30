@@ -28,14 +28,13 @@ export class UserController {
 
     @Put(':id')
     public async update( @Res() res: Response, @Param('id') id: string, @Body() user: IUser) {
-        await this.userService.update(id, user);
-        res.status(HttpStatus.NO_CONTENT).send();
+        const userUpdated = await this.userService.update(id, user);
+        res.status(HttpStatus.OK).send(userUpdated);
     }
 
     @Delete(':id')
     public async delete( @Res() res: Response, @Param('id') id: string) {
-        const deleted = await this.userService.delete(id);
-        console.log(deleted)
-        res.status(HttpStatus.NO_CONTENT).send();
+        const userDeleted = await this.userService.delete(id);
+        res.status(HttpStatus.OK).send(userDeleted);
     }
 }

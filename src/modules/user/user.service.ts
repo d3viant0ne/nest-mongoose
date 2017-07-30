@@ -18,11 +18,11 @@ export class UserService {
         return (await this.repository).create(user);
     }
 
-    public async update(id: string, user: IUser) {
-        return (await this.repository).findByIdAndUpdate( id, user)
+    public async update(id: string, user: IUser): Promise<IUser> {
+        return (await this.repository).findByIdAndUpdate(id, user, {new: true})
     }
 
-    public async delete(id: string) {
+    public async delete(id: string): Promise<IUser> {
         return (await this.repository).findByIdAndRemove(id)
     }
 
