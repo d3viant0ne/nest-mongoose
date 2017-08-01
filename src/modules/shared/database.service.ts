@@ -11,15 +11,9 @@ export class DatabaseService {
     }
 
     get connection() {
-        if (this._connection) {
-            return this._connection;
-        } else {
-            this._connection = mongoose.createConnection(this.getUrl(), {
-                  useMongoClient: true
-            });
-            console.log("MongoDB is Ready!")
-            return this._connection;
-        }
+        return this._connection = (!this._connection)
+        ? mongoose.createConnection(this.getUrl(), { useMongoClient: true })
+        : this._connection
     }
 
     private getUrl() {

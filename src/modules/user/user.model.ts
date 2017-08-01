@@ -25,13 +25,9 @@ export class UserModel {
 
     public repository() {
         const models = this.databaseService.connection.modelNames();
-        if (this._model || models.includes(this.collectionName)) {
-            return this._model;
-        } else {
-            this._model =
-                this.databaseService.connection.model<IUser>(this.collectionName, this._schema) as IUserModel;
-            return this._model;
-        }
+        return this._model = (!this._model || !models.includes(this.collectionName))
+        ? this.databaseService.connection.model<IUser>(this.collectionName, this._schema) as IUserModel
+        : this._model
     }
 
     private generateSchema() {
