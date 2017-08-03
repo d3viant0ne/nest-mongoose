@@ -1,31 +1,26 @@
-import { Component } from '@nestjs/common';
-import { IUser, UserModel } from './user.model';
+import { Component } from '@nestjs/common'
+import { User, IUser } from './user.model'
 
 @Component()
 export class UserService {
-    constructor(private userModel: UserModel) { }
 
     public async getAll() {
-         return (await this.repository).find();
+        return (await User).find();
     }
 
-    public async getById(id: string): Promise<IUser> {
-        return (await this.repository).findById(id);
+    public async getById(id: string):Promise<IUser> {
+        return await User.findById(id);
     }
 
     public async create(user: IUser): Promise<IUser> {
-        return (await this.repository).create(user);
+        return await User.create(user);
     }
 
     public async update(id: string, user: IUser): Promise<IUser> {
-        return (await this.repository).findByIdAndUpdate(id, user, {new: true})
+        return await User.findByIdAndUpdate(id, user, {new: true})
     }
 
-    public async delete(id: string): Promise<IUser> {
-        return (await this.repository).findByIdAndRemove(id)
-    }
-
-    private get repository() {
-        return this.userModel.repository();
+    public async delete(id: string) {
+        return await User.findByIdAndRemove(id)
     }
 }
